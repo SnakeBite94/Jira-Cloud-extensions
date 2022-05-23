@@ -7,6 +7,7 @@
 // @match        https://*/browse/*
 // @icon         https://www.google.com/s2/favicons?domain=atlassian.net
 // @grant        none
+// @downloadURL  https://raw.githubusercontent.com/SnakeBite94/Jira-Cloud-extensions/main/JiraCloudExtensions.js
 // ==/UserScript==
 
 (function () {
