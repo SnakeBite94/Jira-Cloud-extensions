@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jira Cloud extensions
 // @namespace    http://tampermonkey.net/
-// @version      0.3
+// @version      0.4
 // @description  Copy Jira Cloud issue key and description to clipboard; Set description editor max height, so the toolbar stays visible;
 // @author       Dejf
 // @match        https://*/browse/*
@@ -33,7 +33,7 @@
 })();
 
 function addCollapseRightPanelButton() {
-    waitForKeyElements(".mffpf0-2.GTSJf", p => {
+    waitForKeyElements(".sc-188kt4i-1.jMNOyQ", p => {
         const rightPanel = p[0];
         let btn = document.createElement('button')
         btn.innerHTML = "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" role=\"presentation\"><path d=\"M10.294 9.698a.988.988 0 010-1.407 1.01 1.01 0 011.419 0l2.965 2.94a1.09 1.09 0 010 1.548l-2.955 2.93a1.01 1.01 0 01-1.42 0 .988.988 0 010-1.407l2.318-2.297-2.327-2.307z\" fill=\"currentColor\" fill-rule=\"evenodd\"></path></svg>";
@@ -68,7 +68,7 @@ function addCollapseRightPanelButton() {
 }
 
 function addToolbarButton(text, onclick, cssObj) {
-    waitForKeyElements('.um2giz-0.guBgLL', target=> {
+    waitForKeyElements('.gn0msi-0.cqZBrb', target=> {
         let button = document.createElement('button');
         button.innerHTML = text;
         button.onclick = onclick;
