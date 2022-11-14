@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jira Cloud extensions
 // @namespace    http://tampermonkey.net/
-// @version      0.5
+// @version      0.6
 // @description  Copy Jira Cloud issue key and description to clipboard; Set description editor max height, so the toolbar stays visible;
 // @author       Dejf
 // @match        https://*/browse/*
@@ -27,7 +27,7 @@
     }
     else // main page
     {
-        addToolbarButton('📋 To clipboard', copyJiraKeyAndDescriptionToClip);
+        addToolbarButton('📋 To clipboard', copyJiraKeyAndDescriptionToClip, initCopyJiraKeyAndDescriptionToClip);
         addCollapseRightPanelButton();
     }
 })();
@@ -67,23 +67,39 @@ function addCollapseRightPanelButton() {
     }, true);
 }
 
-function addToolbarButton(text, onclick, cssObj) {
+function addToolbarButton(text, onclick, oninit) {
     waitForKeyElements('._otyr1y44', target=> {
         let button = document.createElement('button');
         button.innerHTML = text;
-        button.onclick = onclick;
+        button.onclick = onclick(button);
         button.onsubmit = () => { };
-        button.className = "css-vhhexr";
+        button.className = "css-8e6fqr";
         button.style = "margin-left: 10px";
         target.append(button);
+        oninit(button)
     }, true);
 }
 
-function copyJiraKeyAndDescriptionToClip() {
+function copyJiraKeyAndDescriptionToClip(button) {
     let jiraKeyDesc = document.title;
     let key = jiraKeyDesc.match(/\[(.*)\]/)[1];
     let desc = jiraKeyDesc.match(/\] (.+) - /)[1];
     toClipboard(key + ' - ' + desc);
+
+}
+
+function initCopyJiraKeyAndDescriptionToClip(button)
+{
+    var qq = button.innerHTML;
+    window.addEventListener('keydown', e=> {
+        if (e.ctrlKey)
+        {
+            //button.innerHTML = "Remember parent";
+        }
+    });
+    window.addEventListener('keyup', ()=>{
+        //button.innerHTML = qq;
+    })
 }
 
 //-------------------------------------------------
