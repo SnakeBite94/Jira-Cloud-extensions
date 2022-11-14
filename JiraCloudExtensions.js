@@ -71,7 +71,7 @@ function addToolbarButton(text, onclick, oninit) {
     waitForKeyElements('._otyr1y44', target=> {
         let button = document.createElement('button');
         button.innerHTML = text;
-        button.onclick = onclick(button);
+        button.onclick = () => onclick(button);
         button.onsubmit = () => { };
         button.className = "css-8e6fqr";
         button.style = "margin-left: 10px";
