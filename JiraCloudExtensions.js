@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jira Cloud extensions
 // @namespace    http://tampermonkey.net/
-// @version      0.7
+// @version      0.8
 // @description  Copy Jira Cloud issue key and description to clipboard; Set description editor max height, so the toolbar stays visible;
 // @author       Dejf
 // @match        https://*/browse/*
@@ -69,7 +69,7 @@ function addCollapseRightPanelButton() {
 }
 
 function addToolbarButton(text, onclick, oninit) {
-    waitForKeyElements('._otyr1b66._1yt4swc3._1e0c116y', target=> {
+    waitForKeyElements('._otyr1b66', target=> {
         let button = document.createElement('button');
         button.innerHTML = text;
         button.onclick = () => onclick(button);
