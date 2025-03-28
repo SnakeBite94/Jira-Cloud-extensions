@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jira Cloud extensions
 // @namespace    http://tampermonkey.net/
-// @version      0.9
+// @version      0.9.1
 // @description  Copy Jira Cloud issue key and description to clipboard; Set description editor max height, so the toolbar stays visible;
 // @author       Dejf
 // @match        https://*/browse/*
@@ -35,7 +35,7 @@
             var gitIcon = getButtonIcon("iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADSSURBVDiNpdK9TgJhEIXhB/mxorYwbCxILMwWJLbCDVhxE7YY7kdq5AJoqLgBGkKjhaIJnQUVJcX3JZINsux6ujmZeXMmM/xT1SNeD318Y1sU2MMGL/hEI2/gIlPfY4onNHEV/Rae0c0DtvCFH4yjd4l1TLU5B5JidVAnEVjHCMM8wB2WGW8SIeuYsjCAsNpt1qz9AWngEW3coCOc9S3bWDmRYI4FPvCOGXanwwelMW4pJX7P+FoGMBTuXY+QpCigKzzLSNg995WP6QEDXJcZLqw9RfYnK1Vve5AAAAAASUVORK5CYII=");
             addToolbarButton(target, gitIcon + 'Git branch to clipboard', copyBanchNameToClip);
             return false;
-        }, true);
+        }, false);
         addCollapseRightPanelButton();
     }
 })();
