@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jira Cloud extensions
 // @namespace    http://tampermonkey.net/
-// @version      0.9.2
+// @version      0.9.3
 // @description  Copy Jira Cloud issue key and description to clipboard; Set description editor max height, so the toolbar stays visible;
 // @author       Dejf
 // @match        https://*/browse/*
@@ -29,11 +29,11 @@
     }
     else // main page
     {
-        waitForKeyElements('.css-stv1n7', target => {
+        waitForKeyElements('.css-m1gh8r', target => {
             var clipIcon = getButtonIcon("iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAWQAAAFkBqp2phgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACwSURBVDiN7dMxSgNhFATgb2TB1LZuYZkjeAQP4wG8k7cQAjb22yeVYGGwCCL8aTay2d0fSbDMwMDPY/73Zh48pRRzxA1e8Ibbmu7KDJJ0+MAKz9gkWSdpJuLBxEd8ovS8Hjna9fUvPP3WB4J3LPt3N2h04BoNWmzRjBvssKhlnXGzqO7gFEwaJLlPUip8GOsnWy2lvCJnOzgVlwj/HGGLu78+JGnxjZ/DxNox1Xh0THt8X7kBq8F2ugAAAABJRU5ErkJggg==");
-            addToolbarButton(target, clipIcon + 'To clipboard', copyJiraKeyAndDescriptionToClip, initCopyJiraKeyAndDescriptionToClip);
+            addToolbarButton(target, clipIcon, copyJiraKeyAndDescriptionToClip, initCopyJiraKeyAndDescriptionToClip);
             var gitIcon = getButtonIcon("iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADSSURBVDiNpdK9TgJhEIXhB/mxorYwbCxILMwWJLbCDVhxE7YY7kdq5AJoqLgBGkKjhaIJnQUVJcX3JZINsux6ujmZeXMmM/xT1SNeD318Y1sU2MMGL/hEI2/gIlPfY4onNHEV/Rae0c0DtvCFH4yjd4l1TLU5B5JidVAnEVjHCMM8wB2WGW8SIeuYsjCAsNpt1qz9AWngEW3coCOc9S3bWDmRYI4FPvCOGXanwwelMW4pJX7P+FoGMBTuXY+QpCigKzzLSNg995WP6QEDXJcZLqw9RfYnK1Vve5AAAAAASUVORK5CYII=");
-            addToolbarButton(target, gitIcon + 'Git branch to clipboard', copyBanchNameToClip);
+            addToolbarButton(target, gitIcon, copyBanchNameToClip);
             return false;
         }, false);
         addCollapseRightPanelButton();
@@ -41,7 +41,7 @@
 })();
 
 function getButtonIcon(base64){
-    return '<img style="position: relative; top: 2px; margin-right:5px" src="data:image/png;base64,'+base64+'">';
+    return '<img style="margin-top: 2px" src="data:image/png;base64,'+base64+'">';
 }
 
 function addCollapseRightPanelButton() {
@@ -84,8 +84,7 @@ function addToolbarButton(target, text, onclick, oninit) {
     button.innerHTML = text;
     button.onclick = () => onclick(button);
     button.onsubmit = () => { };
-    button.className = "css-1pxwk5s";
-    button.style = "height: 32.5px";
+    button.className = "_mizu194a _1ah31bk5 _ra3xnqa1 _128m1bk5 _1cvmnqa1 _4davt94y _19itglyw _vchhusvi _r06hglyw _80omtlke _2rkofajl _11c82smr _v5649dqc _189eidpf _1rjc12x7 _1e0c116y _1bsbviql _p12f1osq _kqswh2mm _4cvr1q9y _1bah1h6o _gy1p1b66 _1o9zidpf _4t3iviql _k48p1wq8 _y4tize3t _bozgze3t _y3gn1h6o _s7n4nkob _14mj1kw7 _9v7aze3t _1tv3nqa1 _39yqe4h9 _11fnglyw _18postnw _bfhk1w7a _syaz1gjq _8l3mmuej _aetrb3bt _10531gjq _f8pj1gjq _30l31gjq _9h8h1gjq _irr3166n _1di61dty _4bfu18uv _1hmsglyw _ajmmnqa1 _1a3b18uv _4fprglyw _5goinqa1 _9oik18uv _1bnxglyw _jf4cnqa1 _1nrm18uv _c2waglyw _1iohnqa1";
     target.append(button);
     oninit?.(button);
 }
